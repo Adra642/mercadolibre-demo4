@@ -41,6 +41,9 @@ class Producto
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?AttachFile $foto = null;
 
+    #[ORM\ManyToOne]
+    private ?Vendedor $vendedor = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -114,6 +117,18 @@ class Producto
     public function setFoto(?AttachFile $foto): static
     {
         $this->foto = $foto;
+
+        return $this;
+    }
+
+    public function getVendedor(): ?Vendedor
+    {
+        return $this->vendedor;
+    }
+
+    public function setVendedor(?Vendedor $vendedor): static
+    {
+        $this->vendedor = $vendedor;
 
         return $this;
     }

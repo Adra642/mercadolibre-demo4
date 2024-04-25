@@ -10,11 +10,12 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Entity\Producto;
+use App\Entity\Vendedor;
 use App\Entity\ProductoCategoria;
-use CarlosChininin\AttachFile\Form\AttachFileType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use CarlosChininin\AttachFile\Form\AttachFileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProductoType extends AbstractType
@@ -28,6 +29,11 @@ class ProductoType extends AbstractType
             ->add('categoria', EntityType::class, [
                 'class' => ProductoCategoria::class,
                 'choice_label' => 'nombre',
+            ])
+            ->add('vendedor', EntityType::class, [
+                'class' => Vendedor::class,
+                'choice_label' => 'nombre',
+                'required' => true,
             ])
             ->add('foto', AttachFileType::class, ["required" => false])
             ->add('isActive');

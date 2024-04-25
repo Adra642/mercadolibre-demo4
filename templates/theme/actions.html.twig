@@ -1,0 +1,15 @@
+{% macro btn_show(path) %}
+	<a href="{{ path }}" title="Mostrar">
+		<i class="fa fa-eye"></i>
+	</a>
+{% endmacro %}
+
+{% macro btn_edit(path) %}
+	<a href="{{ path }}" title="Editar">
+		<i class="fa fa-pencil-alt"></i>
+	</a>
+{% endmacro %}
+
+{% macro btn_new(path) %}
+	<a class="btn btn-success mt-4" href="{{ path }}">Nuevo</a>
+{% endmacro %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% import "theme/actions.html.twig" as action %}
+
+{% block title %}Medio de Pago index
+{% endblock %}
+
+{% block body %}
+	<h4>Medio de Pago index</h4>
+
+	<table class="table style-two">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for medio_pago in medio_pagos %}
+				<tr>
+					<td>{{ medio_pago.id }}</td>
+					<td>{{ medio_pago.nombre }}</td>
+					<td>
+						<div class="text-center">
+							{{action.btn_show(path('app_vendedor_show', {'id': medio_pago.id}))}}
+							{{action.btn_edit(path('app_vendedor_edit', {'id': medio_pago.id}))}}
+						</div>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{{action.btn_new(path('app_medio_pago_new'))}}
+{% endblock %}
