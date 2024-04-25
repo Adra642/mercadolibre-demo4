@@ -23,6 +23,11 @@ class ProductoCategoria
     #[ORM\Column(length: 100)]
     private ?string $nombre = null;
 
+    public function __toString(): string
+    {
+        return $this->nombre;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

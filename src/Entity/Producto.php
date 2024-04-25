@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Repository\ProductoRepository;
+use CarlosChininin\AttachFile\Model\AttachFile;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,6 +37,9 @@ class Producto
 
     #[ORM\Column]
     private bool $isActive = true;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?AttachFile $foto = null;
 
     public function getId(): ?int
     {
@@ -98,6 +102,18 @@ class Producto
     public function setActive(bool $isActive): static
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getFoto(): ?AttachFile
+    {
+        return $this->foto;
+    }
+
+    public function setFoto(?AttachFile $foto): static
+    {
+        $this->foto = $foto;
 
         return $this;
     }

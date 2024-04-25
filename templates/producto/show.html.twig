@@ -1,38 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Producto{% endblock %}
+{% block title %}Producto
+{% endblock %}
 
 {% block body %}
-    <h4>Producto</h4>
+	<h4>Producto</h4>
 
-    <table class="table style-two">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ producto.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ producto.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Precio</th>
-                <td>{{ producto.precio }}</td>
-            </tr>
-            <tr>
-                <th>Descuento</th>
-                <td>{{ producto.descuento }}</td>
-            </tr>
-            <tr>
-                <th>IsActive</th>
-                <td>{{ producto.isActive ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table style-two">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ producto.id }}</td>
+			</tr>
+			<tr>
+				<th>Nombre</th>
+				<td>{{ producto.nombre }}</td>
+			</tr>
+			<tr>
+				<th>Precio</th>
+				<td>{{ producto.precio }}</td>
+			</tr>
+			<tr>
+				<th>Descuento</th>
+				<td>{{ producto.descuento }}</td>
+			</tr>
+			<tr>
+				<th>Categoria</th>
+				<td>{{ producto.categoria }}</td>
+			</tr>
+			<tr>
+				<th>Foto</th>
+				<td>
+					{% if producto.foto %}
+						<img src="{{ asset(producto.foto.filePath) | imagine_filter('small') }}" alt="Foto"/>
+					{% endif %}
+				</td>
+			</tr>
+			<tr>
+				<th>IsActive</th>
+				<td>{{ producto.isActive ? 'Yes' : 'No' }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a a class="btn btn-secondary mt-4" href="{{ path('app_producto_index') }}">back to list</a>
+	<a a class="btn btn-secondary mt-4" href="{{ path('app_producto_index') }}">back to list</a>
 
-    <a a class="btn btn-warning mt-4" href="{{ path('app_producto_edit', {'id': producto.id}) }}">edit</a>
+	<a a class="btn btn-warning mt-4" href="{{ path('app_producto_edit', {'id': producto.id}) }}">edit</a>
 
-    {{ include('producto/_delete_form.html.twig') }}
+	{{ include('producto/_delete_form.html.twig') }}
 {% endblock %}
