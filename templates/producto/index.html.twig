@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Producto
+{% endblock %}
+
+{% block body %}
+	<h4>Producto index</h4>
+
+	<table class="table style-two">
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Descuento</th>
+				<th>IsActive</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for producto in productos %}
+				<tr>
+					<td>{{ producto.nombre }}</td>
+					<td>{{ producto.precio }}</td>
+					<td>{{ producto.descuento }}</td>
+					<td>{{ producto.isActive ? 'Si' : 'No' }}</td>
+					<td>
+						<a href="{{ path('app_producto_show', {'id': producto.id}) }}">show</a>
+						<a href="{{ path('app_producto_edit', {'id': producto.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a class="btn btn-success mt-4" href="{{ path('app_producto_new') }}">Create new</a>
+{% endblock %}
