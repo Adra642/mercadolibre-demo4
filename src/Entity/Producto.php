@@ -13,6 +13,7 @@ use App\Repository\ProductoRepository;
 use CarlosChininin\AttachFile\Model\AttachFile;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Query\Expr\Math;
 
 #[ORM\Entity(repositoryClass: ProductoRepository::class)]
 class Producto
@@ -48,6 +49,10 @@ class Producto
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
     private ?\DateTimeInterface $fechaCreacion = null;
 
+    public function __toString()
+    {
+        return $this->nombre;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -147,5 +152,11 @@ class Producto
         $this->fechaCreacion = $fechaCreacion;
 
         return $this;
+    }
+
+    public function getPrecioDescuento(): float
+    {
+        $precioFinal = (100 - $this->descuento) / 100  * $this->precio;
+        return round($precioFinal, 2);
     }
 }
