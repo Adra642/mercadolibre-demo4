@@ -42,6 +42,7 @@ class Producto
     private ?AttachFile $foto = null;
 
     #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Vendedor $vendedor = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]

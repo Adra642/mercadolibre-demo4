@@ -24,11 +24,9 @@
 					<td>{{ vendedor.nombre }}</td>
 					<td>{{ vendedor.telefono }}</td>
 					<td>{{ vendedor.direccion }}</td>
-					<td>
-						<div class="text-center">
-							{{action.btn_show(path('app_vendedor_show', {'id': vendedor.id}))}}
-							{{action.btn_edit(path('app_vendedor_edit', {'id': vendedor.id}))}}
-						</div>
+					<td class="text-center">
+						{{action.btn_show(path('app_vendedor_show', {'id': vendedor.id}))}}
+						{{action.btn_edit(path('app_vendedor_edit', {'id': vendedor.id}))}}
 					</td>
 				</tr>
 			{% else %}
