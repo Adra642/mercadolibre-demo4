@@ -44,6 +44,9 @@ class Producto
     #[ORM\ManyToOne]
     private ?Vendedor $vendedor = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
+    private ?\DateTimeInterface $fechaCreacion = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -129,6 +132,18 @@ class Producto
     public function setVendedor(?Vendedor $vendedor): static
     {
         $this->vendedor = $vendedor;
+
+        return $this;
+    }
+
+    public function getFechaCreacion(): ?\DateTimeInterface
+    {
+        return $this->fechaCreacion;
+    }
+
+    public function setFechaCreacion(?\DateTimeInterface $fechaCreacion): static
+    {
+        $this->fechaCreacion = $fechaCreacion;
 
         return $this;
     }

@@ -37,6 +37,7 @@ class ProductoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $producto->setFechaCreacion(new \DateTime());
             $entityManager->persist($producto);
             $entityManager->flush();
 
@@ -64,6 +65,7 @@ class ProductoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $producto->setFechaCreacion(new \DateTime());
             $entityManager->flush();
 
             return $this->redirectToRoute('app_producto_index', [], Response::HTTP_SEE_OTHER);
@@ -78,7 +80,7 @@ class ProductoController extends AbstractController
     #[Route('/{id}', name: 'app_producto_delete', methods: ['POST'])]
     public function delete(Request $request, Producto $producto, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$producto->getId(), $request->getPayload()->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $producto->getId(), $request->getPayload()->get('_token'))) {
             $entityManager->remove($producto);
             $entityManager->flush();
         }

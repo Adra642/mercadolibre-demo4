@@ -10,6 +10,8 @@
 	<table class="table style-two">
 		<thead>
 			<tr>
+				<th>Fecha</th>
+				<th>Hora</th>
 				<th>Foto</th>
 				<th>Nombre</th>
 				<th>Precio</th>
@@ -21,6 +23,8 @@
 		<tbody>
 			{% for producto in productos %}
 				<tr>
+					<td>{{ producto.fechaCreacion | date('d-m-Y') }}</td>
+					<td>{{ producto.fechaCreacion | date('h:i:s a') }}</td>
 					<td>
 						{% if producto.foto %}
 							<img src="{{ asset(producto.foto.filePath) | imagine_filter('mini') }}" alt="Foto"/>
